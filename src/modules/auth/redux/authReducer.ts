@@ -9,6 +9,7 @@ export interface AuthState {
 export const setAuthorization = createCustomAction('auth/setAuthorization', (data: AuthToken) => ({
   data,
 }));
+//lưu đăng nhập 
 
 export const setUserInfo = createCustomAction('auth/setUserInfo', (data: IUser) => ({
   data,

@@ -17,6 +17,7 @@ import { getErrorMessageResponse } from '../../../utils';
 import { setUserInfo } from '../redux/authReducer';
 import Cookies from 'js-cookie';
 import { ACCESS_TOKEN_KEY } from '../../../utils/constants';
+import { FormattedMessage } from 'react-intl';
 
 const LoginPage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
@@ -36,12 +37,9 @@ const LoginPage = () => {
 
       if (json?.code === RESPONSE_STATUS_SUCCESS) {
         dispatch(setUserInfo(json.data)); //dispatch action set user data
-
         //Set login token to Cookie when user choose remember me
         Cookies.set(ACCESS_TOKEN_KEY, json.data.token, {expires: values.rememberMe ? 7 : undefined});
-        
         //Replace current path to home page 
-
         dispatch(replace(ROUTES.home));
         return;
       }
@@ -61,6 +59,9 @@ const LoginPage = () => {
   }}>
     <img src={logo} alt="" style={{maxWidth: '250px', margin: '32px'}} />
     <LoginForm onLogin={onLogin} loading={false} errorMessage={errorMessage} />
+    {/* <a href="/register">
+      <FormattedMessage id="register"/>
+    </a> */}
   </div>
   );
 };

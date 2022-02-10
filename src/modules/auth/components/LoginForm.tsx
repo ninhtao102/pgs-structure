@@ -114,7 +114,7 @@ const LoginForm = (props: Props) => {
             {
               loading && <div className="spinner-border spinner-border-sm text-align mr-2" role="status"/>
             }
-            <FormattedMessage id="register"/>
+            <FormattedMessage id="login"/>
           </button>
         </div>
 
@@ -134,7 +134,7 @@ const LoginForm = (props: Props) => {
             {
               loading && <div className="spinner-border spinner-border-sm text-align mr-2" role="status"/>
             }
-            <FormattedMessage id="signUp"/>
+            <FormattedMessage id="register"/>
           </Link>
         </div>
       </div>

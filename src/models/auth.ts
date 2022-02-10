@@ -15,8 +15,8 @@ export interface IRegisterParams {
   repeatPassword: string,
   name: string,
   gender: string,
-  region: number,
-  state: number,
+  region: string,
+  state: string,
 }
 
 export interface IRegisterValidation {
@@ -25,6 +25,21 @@ export interface IRegisterValidation {
   repeatPassword: string,
   name: string,
   gender: string,
+  region: string | number,
+  state: string | number,
+}
+
+export interface IGenderParams {
+  label: string,
+  value: string,
+}
+
+export interface ILocationParams {
+  id: string | number,
+  name: string,
+  pid?: number | null,
+}
+export interface ILocationValidation {
   region: string | number,
   state: string | number,
 }

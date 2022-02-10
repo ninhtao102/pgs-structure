@@ -26,32 +26,53 @@ const validatePassword = (password: string) => {
 }
 
 const validateRepeatPassword = (password: string, repeatPassword: string) => {
-    if (!password) {
+    if (!repeatPassword) {
         return 'passwordRequire'
     }
 
-    if (password.length < 4) {
-        return 'minPasswordInvalid'
-    }
-
     if (password !== repeatPassword) {
-        return 'notMatchPassword'
+        return 'matchPasswordInvalid'
     }
 
     return ''
 }
 
-const validEmptyField = (name: string) => {
+// const validateField = (field: string, value: string) => {
+//     if (value) return '';
+//     let fieldRequire = '';
+//     switch (field) {
+//         case 'name':
+//             fieldRequire = 'nameRequire'
+//     }
+// }
+
+const validateName = (name: string) => {
     if (!name) {
-        return 'fillRequire'
+        return 'nameRequire'
     }
 
     return ''
 }
 
-const validCityField = (region: string | number) => {
+const validateGender = (gender: string) => {
+    if (!gender) {
+        return 'genderRequire'
+    }
+
+    return ''
+}
+
+const validateRegion = (region: string | number) => {
     if (!region) {
-        return 'selectRequire'
+        return 'regionRequire'
+    }
+
+    return 0
+}
+
+const validateState = (state: string | number) => {
+    if (!state) {
+        return 'stateRequire'
     }
 
     return 0
@@ -62,10 +83,10 @@ export const validateRegister = (values: IRegisterParams): IRegisterValidation =
         email: validateEmail(values.email),
         password: validatePassword(values.password),
         repeatPassword: validateRepeatPassword(values.password, values.repeatPassword),
-        name: validEmptyField(values.name),
-        gender: validEmptyField(values.gender),
-        region: validCityField(values.region),
-        state: validCityField(values.state)
+        name: validateName(values.name),
+        gender: validateGender(values.gender),
+        region: validateRegion(values.region),
+        state: validateState(values.state)
     }
 }
 

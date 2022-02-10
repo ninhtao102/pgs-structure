@@ -1,137 +1,122 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { IRegisterParams, IRegisterValidation } from '../../../models/auth'
-import { validateRegister, validRegister } from '../utils';
+import { IGenderParams, ILocationParams, IRegisterParams, IRegisterValidation } from '../../../models/auth'
+import { validateRegister, validRegister } from '../utils'
+import { GENDER } from '../../intl/constants'
 
 interface Props {
     onRegister(values: IRegisterParams): void;
     loading:boolean;
     errorMessage: string;
+    locations: Array<ILocationParams>
+    city(pid: number): Promise<any>
 }
 
 const RegisterForm = (props: Props) => {
-    const { onRegister, loading, errorMessage } = props
-
-    const [formValues, setFormValues] = React.useState<IRegisterParams>({ email: '', password: '', repeatPassword: '', name: '', gender: '', region: 1, state: 1 })
+    const { onRegister, loading, errorMessage, locations, city } = props
     const [validate, setValidate] = React.useState<IRegisterValidation>()
+    const [state, setState] = React.useState<ILocationParams[]>()
+
+    const [formValues, setFormValues] = React.useState<IRegisterParams>({ 
+        email: '', 
+        password: '', 
+        repeatPassword: '', 
+        name: '', 
+        gender: '', 
+        region: '', 
+        state: '' 
+    })
 
     const onSubmit = React.useCallback(() => {
         const validate = validateRegister(formValues)
-    
+        console.log(formValues)
         setValidate(validate)
-    
         if (!validRegister(validate)) {
             return;
         }
-    
         onRegister(formValues);
     }, [formValues, onRegister]);
 
+    const renderGender = () => {
+        const arrGender: JSX.Element[] = [
+            <option disabled selected value={''} key={''}>
+                {''}
+                -- select an option-- {''}
+            </option>
+        ];
+        GENDER.map((g: IGenderParams, index: number ) => {
+            arrGender.push(
+                <option value={g.value} key={index}>
+                    {g.label}
+                </option>
+            )
+        });
+        return arrGender;
+    }
+
+    const renderRegion = () => {
+        const arrRegion: JSX.Element[] = [
+            <option disabled selected value={''} key={''}>
+                {''}
+                -- select an option-- {''}
+            </option>
+        ];
+        locations.map((location: ILocationParams, index: number ) => {
+            arrRegion.push(
+                <option value={location.id} key={index}>
+                    {location.name}
+                </option>
+            )
+        });
+        return arrRegion;
+    }
+
+    const renderState = () => {
+        const arrState: JSX.Element[] = [
+            <option disabled selected value={''} key={''}>
+                {''}
+                -- select an option-- {''}
+            </option>
+        ];
+        locations.map((location: ILocationParams, index: number ) => {
+            arrState.push(
+                <option value={location.id} key={index}>
+                    {location.name}
+                </option>
+            )
+        });
+        return arrState;
+    }
+
+    React.useEffect(() => {
+    city(+formValues.region).then((resp) => {
+        console.log(resp)
+        setState(resp)
+    })
+    }, [formValues.region, city])
+    
+
     return (
     <form
+        className="row g-3 needs-validation"
+        autoComplete='off'
+        noValidate
         style={{
             maxWidth: '560px',
             width: '100%'
         }}
-        noValidate
-        className="row g-3 needs-validation"
         onSubmit={(e) => {
             e.preventDefault();
             onSubmit();
         }}
     >
-        <div className="col-md-12">
-            <label htmlFor='inputName' className='form-label'>
-                <FormattedMessage id='name'/>
-            </label>
-            <input 
-                type="text" 
-                className="form-control" 
-                id="inputName"
-                value={formValues.name}
-                onChange={(e) => setFormValues({ ...formValues, name: e.target.value})}
-            />
-            {
-                !!validate?.name && (
-                    <small className="text-danger">
-                        <FormattedMessage id={validate?.name}/>
-                    </small>
-                )
-            }
-        </div>
-
-        <div className="col-md-12">
-            <label htmlFor='inputGender' className='form-label'>
-                <FormattedMessage id='gender'/>
-            </label>
-            <div className="radio-group">
-                <div className="form-check form-check-inline">
-                    <input 
-                    className="form-check-input" 
-                    type="radio" 
-                    name="flexRadioDefault" 
-                    id="male" 
-                    value="male"
-                    onChange={(e) => setFormValues({ ...formValues, gender: e.target.value})}
-                    />
-                    <label className="form-check-label" htmlFor="male">
-                        <FormattedMessage id='male'/>
-                    </label>
+        {
+            !!errorMessage && (
+                <div className="alert alert-danger" role="alert" style={{width: '100%'}}>
+                    {errorMessage}
                 </div>
-                <div className="form-check form-check-inline">
-                    <input 
-                    className="form-check-input" 
-                    type="radio" 
-                    name="flexRadioDefault" 
-                    id="female" 
-                    value="female"
-                    onChange={(e) => setFormValues({ ...formValues, gender: e.target.value})}
-                    />
-                    <label className="form-check-label" htmlFor="female">
-                        <FormattedMessage id='female'/>
-                    </label>
-                </div>
-                <div className="form-check form-check-inline">
-                    <input 
-                    className="form-check-input" 
-                    type="radio" 
-                    name="flexRadioDefault" 
-                    id="otherGender" 
-                    value="otherGender"
-                    onChange={(e) => setFormValues({ ...formValues, gender: e.target.value})}
-                    />
-                    <label className="form-check-label" htmlFor="otherGender">
-                        <FormattedMessage id='otherGender'/>
-                    </label>
-                </div>
-            </div>
-                {
-                    !!validate?.gender && (
-                        <small className="text-danger">
-                            <FormattedMessage id={validate?.gender}/>
-                        </small>
-                    )
-                }
-        </div>
-
-        <div className="col-md-12">
-            <label htmlFor='inputCity' className='form-label'>
-                <FormattedMessage id='city'/>
-            </label>
-            <select className="form-select" aria-label="Default select example" onChange={(e) => setFormValues({ ...formValues, region: +e.target.value, state: +e.target.value})}>
-                <option selected>Select City</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-            {
-                !!validate?.region && (
-                    <small className="text-danger">
-                        <FormattedMessage id={validate?.region}/>
-                    </small>
-                )
-            }
-        </div>
+            )
+        }
 
         <div className="col-md-12">
             <label htmlFor='inputEmail' className='form-label'>
@@ -193,6 +178,99 @@ const RegisterForm = (props: Props) => {
             }
         </div>
 
+        <div className="col-md-12">
+            <label htmlFor='inputName' className='form-label'>
+                <FormattedMessage id='name'/>
+            </label>
+            <input 
+                type="text" 
+                className="form-control" 
+                id="inputName"
+                value={formValues.name}
+                onChange={(e) => setFormValues({ ...formValues, name: e.target.value})}
+            />
+            {
+                !!validate?.name && (
+                    <small className="text-danger">
+                        <FormattedMessage id={validate?.name}/>
+                    </small>
+                )
+            }
+        </div>
+
+        <div className="col-md-12">
+            <label htmlFor='selectGender' className='form-label'>
+                <FormattedMessage id='gender'/>
+            </label>
+            <select 
+            className="form-select" 
+            id='selectGender'
+            value={formValues.gender}
+            onChange={(e) => setFormValues({ ...formValues, gender: e.target.value})}>
+                {renderGender()}
+            </select>
+            {
+                !!validate?.gender && (
+                    <small className="text-danger">
+                        <FormattedMessage id={validate?.gender}/>
+                    </small>
+                )
+            }
+        </div>
+
+        <div className="col-md-12">
+            <label htmlFor="selectRegion" className='form-label'>
+                <FormattedMessage id='region'/>
+            </label>
+            <select 
+            className="form-select" 
+            id="selectRegion"
+            value={formValues.region}
+            onChange={(e) => setFormValues({ ...formValues, region: e.target.value})}>
+                {renderRegion()}
+            </select>
+            {
+                !!validate?.region && (
+                    <small className="text-danger">
+                        <FormattedMessage id={validate?.region}/>
+                    </small>
+                )
+            }
+        </div>
+
+        {formValues.region ? (
+            <div className="col-md-12">
+                <label htmlFor='selectState' className='form-label'>
+                    <FormattedMessage id='state'/>
+                </label>
+                <select 
+                className="form-select" 
+                id='selectState'
+                value={formValues.state}
+                onChange={(e) => setFormValues({ ...formValues, state: e.target.value})}>
+                    {/* {renderState()} */}
+
+                    {
+                        state?.map((item) => {
+                            console.log(item)
+                            return (
+                                <option value={item.id} key={item.id}>
+                                    {item.name}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+                {
+                    !!validate?.state && (
+                        <small className="text-danger">
+                            <FormattedMessage id={validate?.state}/>
+                        </small>
+                    )
+                }
+            </div>
+        ) : null }
+
         <div className="row justify-content-md-center" style={{margin: '16px 0'}}>
             <div className="col-md-auto">
                 <button 
@@ -204,7 +282,7 @@ const RegisterForm = (props: Props) => {
                     {
                         loading && <div className="spinner-border spinner-border-sm text-align mr-2" role="status"/>
                     }
-                    <FormattedMessage id="signUp"/>
+                    <FormattedMessage id="register"/>
                 </button>
             </div>
         </div>

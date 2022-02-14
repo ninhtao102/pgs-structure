@@ -30,7 +30,7 @@ const LoginPage = () => {
       setLoading(true);
 
       const json = await dispatch(
-        fetchThunk(API_PATHS.signIn, 'post', {email: values.email, password: values.password}),
+        fetchThunk(API_PATHS.signIn, 'post', { email: values.email, password: values.password }),
       );
 
       setLoading(false);
@@ -38,31 +38,34 @@ const LoginPage = () => {
       if (json?.code === RESPONSE_STATUS_SUCCESS) {
         dispatch(setUserInfo(json.data)); //dispatch action set user data
         //Set login token to Cookie when user choose remember me
-        Cookies.set(ACCESS_TOKEN_KEY, json.data.token, {expires: values.rememberMe ? 7 : undefined});
-        //Replace current path to home page 
+        Cookies.set(ACCESS_TOKEN_KEY, json.data.token, { expires: values.rememberMe ? 7 : undefined });
+        //Replace current path to home page
         dispatch(replace(ROUTES.home));
         return;
       }
 
       setErrorMessage(getErrorMessageResponse(json));
-  }, [dispatch]);
+    },
+    [dispatch],
+  );
 
   return (
-  <div
-  className='container'
-  style={{
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  }}>
-    <img src={logo} alt="" style={{maxWidth: '250px', margin: '32px'}} />
-    <LoginForm onLogin={onLogin} loading={false} errorMessage={errorMessage} />
-    {/* <a href="/register">
+    <div
+      className="container"
+      style={{
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <img src={logo} alt="" style={{ maxWidth: '250px', margin: '32px' }} />
+      <LoginForm onLogin={onLogin} loading={false} errorMessage={errorMessage} />
+      {/* <a href="/register">
       <FormattedMessage id="register"/>
     </a> */}
-  </div>
+    </div>
   );
 };
 

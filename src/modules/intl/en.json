@@ -1,3 +1,7 @@
 {
-  "welcome": "Hello"
+  "welcome": "Welcome",
+  "email": "Email Address",
+  "password": "Password",
+  "confirm": "Comfirm",
+  "reset": "Reset"
 }

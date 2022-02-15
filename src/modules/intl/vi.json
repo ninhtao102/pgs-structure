@@ -21,5 +21,7 @@
   "nameRequire": "Vui lòng nhập họ và tên",
   "genderRequire": "Vui lòng chọn giới tính",
   "regionRequire": "Vui lòng chọn quốc gia",
-  "stateRequire": "Vui lòng chọn thành phố"
+  "stateRequire": "Vui lòng chọn thành phố",
+  "confirm": "Xác nhận",
+  "reset": "Làm mới"
 }

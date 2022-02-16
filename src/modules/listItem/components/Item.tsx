@@ -15,10 +15,22 @@ const Item = (prop: Props) => {
         border: '1px solid #333d29',
         display: 'flex',
         flexWrap: 'nowrap',
+        backgroundColor: color,
       }}
     >
       <div>
-        <img src={thumbnailUrl} alt="" style={{ maxWidth: '100px', margin: 'auto' }} />
+        <img
+          src={thumbnailUrl}
+          alt="img"
+          style={{
+            maxWidth: '100px',
+            margin: 'auto',
+            objectFit: 'cover',
+            height: '50px',
+            width: '50px',
+            alignItems: 'center',
+          }}
+        />
       </div>
       <div
         style={{
@@ -26,7 +38,7 @@ const Item = (prop: Props) => {
           alignItems: 'center',
         }}
       >
-        <p>{title}</p>
+        <h3 style={{ flex: '1' }}>{title}</h3>
         <p>{Date.now()}</p>
       </div>
     </div>

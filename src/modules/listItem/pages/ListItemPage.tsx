@@ -25,35 +25,30 @@ const ListItemPage = () => {
 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  console.log('aaaaaaaaaaaaaaa');
 
   const fetchListData = React.useCallback(async () => {
     setErrorMessage('');
     setLoading(true);
 
     // lay api voi fetchThunk
-    const json = await dispatch(fetchThunk('https://jsonplaceholder.typicode.com/photos', 'get'));
-    console.log(json);
-    console.log('aaaaaaaaaaaaaaa');
+    const json = await dispatch(fetchThunk(API_PATHS.alist, 'get'));
 
     setLoading(false);
 
     // kiem tra json nhan lai de xu ly
     if (json) {
+      // console.log('json', json);
       setTempListItem(json);
       dispatch(setListItemData(json));
-      console.log('BBBBBBBBBBBBBBBB');
       return;
     }
-
-    console.log('cccccccccccccc');
 
     setErrorMessage(getErrorMessageResponse(json));
     return;
   }, [dispatch]);
 
   useEffect(() => {
-    fetchListData;
+    fetchListData();
   }, [fetchListData]);
 
   return (
@@ -67,8 +62,7 @@ const ListItemPage = () => {
         flexDirection: 'column',
       }}
     >
-      <p>console</p>
-      {/* {loading ? (
+      {loading ? (
         <div className="spinner-border" role="status" style={{ margin: 'auto' }}>
           <span className="visually-hidden">Loading...</span>
         </div>
@@ -107,7 +101,7 @@ const ListItemPage = () => {
           </div>
           <ListItem listItem={listItem} />
         </div>
-      )} */}
+      )}
     </div>
   );
 };

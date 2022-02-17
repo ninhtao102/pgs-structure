@@ -5,6 +5,7 @@ import ProtectedRoute from './modules/common/components/ProtectedRoute';
 
 const HomePage = lazy(() => import('./modules/home/pages/HomePage'));
 const ContactPage = lazy(() => import('./modules/home/pages/ContactPage'));
+const UserPage = lazy(() => import('./modules/home/pages/UserPage'));
 const LoginPage = lazy(() => import('./modules/auth/pages/LoginPage'));
 const RegisterPage = lazy(() => import('./modules/auth/pages/RegisterPage'));
 const ListItemPage = lazy(() => import('./modules/listItem/pages/ListItemPage'));

@@ -42,22 +42,33 @@ const Item = (prop: Props) => {
           src={thumbnailUrl}
           alt="img"
           style={{
+            marginTop: '8px',
+            // margin: 'auto',
             maxWidth: '100px',
-            margin: 'auto',
             objectFit: 'cover',
-            height: '50px',
-            width: '50px',
+            width: '60px',
             alignItems: 'center',
           }}
         />
       </div>
-      <div
-        style={{
-          //   margin: '30px 0',
-          alignItems: 'center',
-        }}
-      >
-        <h3 style={{ flex: '1' }}>{title}</h3>
+      <div>
+        {!isEdit && (
+          <h4 className="list-text-title" onClick={() => setIsEdit(true)}>
+            {title}
+          </h4>
+        )}
+        {isEdit && (
+          <input
+            type="text"
+            style={{ width: '100vh' }}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            onBlur={(e) => {
+              setIsEdit(false);
+              onBlur(e.target.value);
+            }}
+          />
+        )}
         <p>{Date.now()}</p>
       </div>
     </div>

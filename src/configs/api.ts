@@ -23,5 +23,5 @@ export const API_PATHS = {
   signUp: `${getBaseUrl(APIService.auth)}/register`,
   userProfile: `${getBaseUrl(APIService.public)}/user`,
   getLocation: `${getBaseUrl(APIService.public)}/location`,
-  list: 'https://jsonplaceholder.typicode.com/photos',
+  alist: 'https://jsonplaceholder.typicode.com/photos',
 };

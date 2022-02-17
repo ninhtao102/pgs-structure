@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { memo, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'typesafe-actions';
 import { Iitem } from '../../../models/list';
+import { AppState } from '../../../redux/reducer';
+import { setSingleItem } from '../redux/listReducer';
 
 export interface Props {
   item: Iitem;
@@ -7,7 +12,20 @@ export interface Props {
 
 const Item = (prop: Props) => {
   const { id, title, thumbnailUrl } = prop.item;
+  const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
+  const [isEdit, setIsEdit] = useState(false);
+  const [text, setText] = useState(title);
   const color = id % 2 ? 'white' : '#ade8f4';
+  const onBlur = React.useCallback(
+    (text: string) => {
+      dispatch(setSingleItem({ id: +id, value: text }));
+    },
+    [dispatch, id],
+  );
+  React.useEffect(() => {
+    setText(title);
+  }, [title]);
+
   return (
     <div
       // className="row justify-content-md-start "
@@ -20,6 +38,7 @@ const Item = (prop: Props) => {
     >
       <div>
         <img
+          className="mx-3 rounded-circle"
           src={thumbnailUrl}
           alt="img"
           style={{
@@ -45,4 +64,4 @@ const Item = (prop: Props) => {
   );
 };
 
-export default Item;
+export default memo(Item);

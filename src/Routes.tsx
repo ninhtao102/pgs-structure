@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { ROUTES } from './configs/routes';
+import NavBar from './modules/common/components/NavBar';
 import ProtectedRoute from './modules/common/components/ProtectedRoute';
 
 const HomePage = lazy(() => import('./modules/home/pages/HomePage'));
@@ -17,6 +18,7 @@ export const Routes = (props: Props) => {
 
   return (
     <Suspense fallback={<div>Loading.....</div>}>
+      <NavBar />
       <Switch location={location}>
         <Route path={ROUTES.login} component={LoginPage} />
         <Route path={ROUTES.register} component={RegisterPage} />

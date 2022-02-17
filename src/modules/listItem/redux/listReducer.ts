@@ -29,8 +29,8 @@ export default function ListReducer(state: IListState = {}, action: Action) {
       const { id, value } = action.data;
       if (state.list) {
         const newItems = [...state.list];
-        const cloneItem = { ...newItems[+id - 1], title: value };
-        newItems[+id - 1] = cloneItem;
+        const cloneItem = { ...newItems[+id - 2], title: value };
+        newItems[+id - 2] = cloneItem;
         return { ...state, list: newItems };
       }
       return { ...state };

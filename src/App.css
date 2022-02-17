@@ -38,6 +38,7 @@
 }
 
 .list-text-title {
+  cursor: text;
   padding: 5px 5px;
   border: 1px solid transparent;
   border-radius: 5px;

@@ -22,9 +22,11 @@ export const Routes = (props: Props) => {
         <Route path={ROUTES.register} component={RegisterPage} />
         <Route path={ROUTES.list} component={ListItemPage} />
         <ProtectedRoute path={ROUTES.home} component={HomePage} />
+        <ProtectedRoute path={ROUTES.user} component={UserPage} />
         <Route path={ROUTES.contact} component={ContactPage} />
 
-        <Route path="/" component={LoginPage} />
+        {/* <Route path="/" component={LoginPage} /> */}
+        <ProtectedRoute path="/" component={HomePage} />
       </Switch>
     </Suspense>
   );

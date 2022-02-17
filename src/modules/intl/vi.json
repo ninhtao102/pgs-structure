@@ -23,5 +23,6 @@
   "regionRequire": "Vui lòng chọn quốc gia",
   "stateRequire": "Vui lòng chọn thành phố",
   "confirm": "Xác nhận",
-  "reset": "Làm mới"
+  "reset": "Làm mới",
+  "logout": "Đăng xuất"
 }

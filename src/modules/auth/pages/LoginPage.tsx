@@ -10,14 +10,12 @@ import { Action } from 'redux';
 import { fetchThunk } from '../../common/redux/thunk';
 import { API_PATHS } from '../../../configs/api';
 import { RESPONSE_STATUS_SUCCESS } from '../../../utils/httpResponseCode';
-// import { replace } from 'lodash';
 import { replace } from 'connected-react-router';
 import { ROUTES } from '../../../configs/routes';
 import { getErrorMessageResponse } from '../../../utils';
 import { setUserInfo } from '../redux/authReducer';
 import Cookies from 'js-cookie';
 import { ACCESS_TOKEN_KEY } from '../../../utils/constants';
-import { FormattedMessage } from 'react-intl';
 
 const LoginPage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
@@ -34,6 +32,8 @@ const LoginPage = () => {
       );
 
       setLoading(false);
+
+      console.log('remember login', values.rememberMe);
 
       if (json?.code === RESPONSE_STATUS_SUCCESS) {
         dispatch(setUserInfo(json.data)); //dispatch action set user data

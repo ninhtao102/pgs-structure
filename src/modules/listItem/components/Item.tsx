@@ -52,12 +52,7 @@ const Item = (prop: Props) => {
         />
       </div>
       <div>
-        {!isEdit && (
-          <h4 className="list-text-title" onClick={() => setIsEdit(true)}>
-            {title}
-          </h4>
-        )}
-        {isEdit && (
+        {isEdit ? (
           <input
             type="text"
             style={{ width: '100vh' }}
@@ -68,6 +63,10 @@ const Item = (prop: Props) => {
               onBlur(e.target.value);
             }}
           />
+        ) : (
+          <h4 className="list-text-title" onClick={() => setIsEdit(true)}>
+            {title}
+          </h4>
         )}
         <p>{Date.now()}</p>
       </div>

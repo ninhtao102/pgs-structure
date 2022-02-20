@@ -5,12 +5,12 @@ import { ROUTES } from '../../../configs/routes';
 import { AppState } from '../../../redux/reducer';
 import { ACCESS_TOKEN_KEY, avatarDefault } from '../../../utils/constants';
 import { Link } from 'react-router-dom';
+import LogOut from '../../auth/components/Logout';
 import logo from '../../../logo-420-x-108.png';
 
 const NavBar = () => {
-  const { name, avatar } = useSelector((state: AppState) => {
+  const { avatar } = useSelector((state: AppState) => {
     return {
-      name: state.profile.user?.name,
       avatar: state.profile.user?.avatar,
     };
   });
@@ -40,9 +40,11 @@ const NavBar = () => {
           </div>
         </div>
         {auth && (
-          <div className="px-4">
+          <div className="px-4 d-flex">
+            <p style={{ margin: 'auto' }}>
+              <LogOut classBtn="btn text-white" />
+            </p>
             <Link className="nav-link" to={ROUTES.user} id="navbarDropdown" role="button">
-              <p style={{ color: 'white', margin: 'auto', paddingRight: '10px' }}>{name}</p>
               <img src={src} width="40" height="40" className="rounded-circle" />
             </Link>
           </div>

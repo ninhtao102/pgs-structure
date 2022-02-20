@@ -19,6 +19,7 @@ export const Routes = (props: Props) => {
   return (
     <Suspense fallback={<div>Loading.....</div>}>
       <NavBar />
+      {/* {ROUTES.login ? null : <NavBar />} */}
       <Switch location={location}>
         <Route path={ROUTES.login} component={LoginPage} />
         <Route path={ROUTES.register} component={RegisterPage} />

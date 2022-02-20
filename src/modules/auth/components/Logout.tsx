@@ -10,7 +10,11 @@ import { resetData } from '../redux/authReducer';
 import { replace } from 'connected-react-router';
 import { ROUTES } from '../../../configs/routes';
 
-const LogOut = () => {
+interface Prop {
+  classBtn: string;
+}
+
+const LogOut = (props: Prop) => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
   const auth = Cookies.get(ACCESS_TOKEN_KEY);
   const onLogOut = () => {
@@ -23,15 +27,12 @@ const LogOut = () => {
     }
   };
   return (
-    <div>
-      <button
-        type="button"
-        onClick={onLogOut}
-        className="btn btn-primary"
-        style={{ minWidth: '160px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-      >
-        <FormattedMessage id="logout" />
-      </button>
+    <div
+      className={props.classBtn}
+      onClick={onLogOut}
+      style={{ minWidth: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+    >
+      <FormattedMessage id="logout" />
     </div>
   );
 };

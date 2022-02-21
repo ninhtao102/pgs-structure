@@ -1,12 +1,14 @@
-import Cookies from 'js-cookie';
 import React from 'react';
+import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 import { ROUTES } from '../../../configs/routes';
 import { AppState } from '../../../redux/reducer';
 import { ACCESS_TOKEN_KEY, avatarDefault } from '../../../utils/constants';
 import { Link } from 'react-router-dom';
-import LogOut from '../../auth/components/Logout';
+import { FormattedMessage } from 'react-intl';
 import logo from '../../../logo-420-x-108.png';
+
+import LogOut from '../../auth/components/Logout';
 
 const NavBar = () => {
   const { avatar } = useSelector((state: AppState) => {
@@ -28,12 +30,17 @@ const NavBar = () => {
             <ul className="navbar-nav mr-auto d-flex flex-row">
               <li className="nav-item">
                 <Link className="nav-link" to={ROUTES.home}>
-                  Home
+                  <FormattedMessage id="home" />
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={ROUTES.list}>
-                  List Data
+                  <FormattedMessage id="list" />
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={ROUTES.table}>
+                  <FormattedMessage id="payrollTable" />
                 </Link>
               </li>
             </ul>

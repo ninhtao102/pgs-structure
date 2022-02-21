@@ -24,5 +24,11 @@
   "stateRequire": "Vui lòng chọn thành phố",
   "confirm": "Xác nhận",
   "reset": "Làm mới",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "home": "Trang chủ",
+  "list": "Danh sách",
+  "payrollTable": "Bảng chi trả",
+  "payrollTransactionsList": "Payroll Transactions List",
+  "apply": "Apply",
+  "clear": "Clear"
 }

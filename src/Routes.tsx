@@ -10,6 +10,7 @@ const UserPage = lazy(() => import('./modules/home/pages/UserPage'));
 const LoginPage = lazy(() => import('./modules/auth/pages/LoginPage'));
 const RegisterPage = lazy(() => import('./modules/auth/pages/RegisterPage'));
 const ListItemPage = lazy(() => import('./modules/listItem/pages/ListItemPage'));
+const Table = lazy(() => import('./modules/table/pages/TablePage'));
 
 interface Props {}
 
@@ -19,11 +20,11 @@ export const Routes = (props: Props) => {
   return (
     <Suspense fallback={<div>Loading.....</div>}>
       <NavBar />
-      {/* {ROUTES.login ? null : <NavBar />} */}
       <Switch location={location}>
         <Route path={ROUTES.login} component={LoginPage} />
         <Route path={ROUTES.register} component={RegisterPage} />
         <Route path={ROUTES.list} component={ListItemPage} />
+        <Route path={ROUTES.table} component={Table} />
         <ProtectedRoute path={ROUTES.home} component={HomePage} />
         <ProtectedRoute path={ROUTES.user} component={UserPage} />
         <Route path={ROUTES.contact} component={ContactPage} />

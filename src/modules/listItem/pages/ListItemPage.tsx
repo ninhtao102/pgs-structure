@@ -9,7 +9,6 @@ import { getErrorMessageResponse } from '../../../utils';
 import { fetchThunk } from '../../common/redux/thunk';
 import { setListItemData } from '../redux/listReducer';
 import ListItem from '../components/ListItem';
-import { start } from 'repl';
 
 const ListItemPage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
@@ -36,6 +35,7 @@ const ListItemPage = () => {
   const lastItemRef = useCallback(
     (node: HTMLDivElement) => {
       if (loading) return;
+      if (errorMessage.length > 0) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((e) => {
         if (e[0].isIntersecting) {

@@ -3,5 +3,6 @@
   "email": "Email Address",
   "password": "Password",
   "confirm": "Comfirm",
-  "reset": "Reset"
+  "reset": "Reset",
+  "payroll": "Payroll Transactions List"
 }

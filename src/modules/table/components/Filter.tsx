@@ -42,9 +42,7 @@ const Filter = () => {
               filterByField({ type: 'status', value: e.target.value });
             }}
           >
-            <option selected value={undefined}>
-              Status
-            </option>
+            <option value={undefined}>Status</option>
             {statusType.map((item) => {
               return (
                 <option key={item} value={item}>
@@ -56,7 +54,7 @@ const Filter = () => {
         </div>
         {/* <div className="col-lg-2">
           <select className="form-select">
-            <option selected>Client</option>
+            <option  >Client</option>
           </select>
         </div> */}
         <div className="col-lg-2 px-2">

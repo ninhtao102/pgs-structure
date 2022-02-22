@@ -6,7 +6,6 @@ import { Action } from 'typesafe-actions';
 import { mockData } from '../../../configs/mock_data';
 import { ITableItem } from '../../../models/table';
 import { AppState } from '../../../redux/reducer';
-import { ITableState } from '../redux/tableRedux';
 import { setTableData, setTableTempData } from '../redux/tableRedux';
 import Filter from '../components/Filter';
 import Table from '../components/Table';
@@ -14,7 +13,7 @@ import Footer from '../components/Footer';
 
 const TablePage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
-  const [dataTable, setDataTable] = useState<ITableItem | any>(); //xóa any thì lại hiện lỗi
+  const [dataTable, setDataTable] = useState<ITableItem[]>();
   const [pageInfo, setPageInfo] = useState({
     page: 1,
     currItem: 0,
@@ -25,7 +24,7 @@ const TablePage = () => {
 
   const handleChangePage = (num: number) => {
     if (dataTable) {
-      if (num === 1 || num === dataTable?.length - 1) return;
+      if (num === 0 || num === dataTable?.length - 1) return;
       setPageInfo((prev) => {
         return { ...prev, page: num, currItem: num * pageInfo.itemPerPage - 10 };
       });

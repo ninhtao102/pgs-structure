@@ -39,7 +39,7 @@ const RegisterForm = (props: Props) => {
 
   const renderGender = () => {
     const arrGender: JSX.Element[] = [
-      <option disabled selected value={''} key={''}>
+      <option disabled value={''} key={''}>
         {''}
         -- select an option-- {''}
       </option>,
@@ -56,7 +56,7 @@ const RegisterForm = (props: Props) => {
 
   const renderRegion = () => {
     const arrRegion: JSX.Element[] = [
-      <option disabled selected value={''} key={''}>
+      <option disabled value={''} key={''}>
         {''}
         -- select an option-- {''}
       </option>,
@@ -73,7 +73,7 @@ const RegisterForm = (props: Props) => {
 
   const renderState = () => {
     const arrState: JSX.Element[] = [
-      <option disabled selected value={''} key={''}>
+      <option disabled value={''} key={''}>
         {''}
         -- select an option-- {''}
       </option>,

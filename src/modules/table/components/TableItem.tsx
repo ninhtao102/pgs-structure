@@ -14,7 +14,7 @@ const TableItem = (props: Props) => {
       <td>{dayjs(item.time_created).format('DD/MM/YYYY')}</td>
       <td>{item.payment_type}</td>
       <td>{item.currency}</td>
-      <td>{item.volume_input_in_input_currency}</td>
+      <td>{(item.volume_input_in_input_currency + item.fees).toFixed(2)}</td>
       <td>{item.payroll_id}</td>
       <td></td>
     </tr>

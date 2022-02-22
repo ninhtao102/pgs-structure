@@ -11,7 +11,8 @@ const Footer = (props: Props) => {
   const lastPage = Math.ceil(props.totalPage);
   const [displayPage, setDisplayPage] = useState({ start: 0, end: 4 });
   const totalPage = Array.from(Array(lastPage).keys()).slice(displayPage.start, displayPage.end);
-
+  const itemPerPage =
+    props.totalPage * props.itemPerPage >= 10 ? props.itemPerPage : props.totalPage * props.itemPerPage;
   const changeDisplayPage = useCallback(() => {
     if (lastPage < 4) return;
     if (props.currPage === 1) {
@@ -28,11 +29,17 @@ const Footer = (props: Props) => {
       });
     }
     return;
-  }, [props.currPage, lastPage]);
+  }, [props.currPage, lastPage, displayPage.start, displayPage.end]);
 
   useEffect(() => {
-    changeDisplayPage;
+    changeDisplayPage();
   }, [changeDisplayPage]);
+
+  useEffect(() => {
+    if (props.currPage === 1) {
+      setDisplayPage({ start: 0, end: 4 });
+    }
+  }, [props.currPage]);
 
   return (
     <div className="d-flex justify-content-between">
@@ -41,16 +48,27 @@ const Footer = (props: Props) => {
       </p>
       <div className="d-flex">
         <nav aria-label="Page navigation example">
-          <ul className="pagination">
+          <ul className="pagination page">
+            <li
+              className={`${props.currPage === 1 ? 'disabled' : ''} page-item`}
+              onClick={() => {
+                props.handleChangePage(1);
+              }}
+            >
+              <p className="page-link" aria-label="First">
+                <span aria-hidden="true">&Iota;&lt;</span>
+              </p>
+            </li>
             <li
               className={`${props.currPage === 1 ? 'disabled' : ''} page-item`}
               onClick={() => {
                 if (props.currPage === 1) return;
                 props.handleChangePage(props.currPage - 1);
+                console.log(props.currPage);
               }}
             >
               <p className="page-link" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
+                <span aria-hidden="true">&lt;</span>
               </p>
             </li>
             {totalPage.map((num) => {
@@ -77,7 +95,17 @@ const Footer = (props: Props) => {
               }}
             >
               <p className="page-link" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+                <span aria-hidden="true">&gt;</span>
+              </p>
+            </li>
+            <li
+              className={`${props.currPage === lastPage ? 'disabled' : ''} page-item`}
+              onClick={() => {
+                props.handleChangePage(props.totalPage - 1);
+              }}
+            >
+              <p className="page-link" aria-label="Last">
+                <span aria-hidden="true">&gt;&Iota;</span>
               </p>
             </li>
           </ul>

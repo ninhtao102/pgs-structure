@@ -67,6 +67,10 @@
 .header-title {
   color: #2f4159;
 }
+.page:focus {
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
 
 /* ------------------ Filter ------------------- */
 

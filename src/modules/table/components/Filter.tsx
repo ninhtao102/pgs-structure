@@ -12,6 +12,7 @@ const Filter = () => {
   const [filterValue, setFilterValue] = useState<IFilterTable[]>([
     { type: 'status', value: '' },
     { type: 'time_created', value: '' },
+    { type: 'payment_type', value: '' },
     { type: 'volume_input_in_input_currency', value: '' },
   ]);
   const filterByField = useCallback((data: IFilterTable) => {

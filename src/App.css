@@ -56,8 +56,10 @@
   width: 130px;
 }
 .table-row {
-  background-color: #282c34;
-  border-bottom: 10px solid #fff;
+  background-color: #fff;
+  height: 8vh;
+  vertical-align: middle;
+  border-bottom: 10px solid #f8f9fa;
 }
 
 /* ------------------ Table Page ------------------- */

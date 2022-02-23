@@ -62,14 +62,19 @@
   border-bottom: 10px solid #f8f9fa;
 }
 
+table > thead > th {
+  padding-left: 8px;
+}
+
+.icon-rotate {
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
 /* ------------------ Table Page ------------------- */
 
 .header-title {
   color: #2f4159;
-}
-.page:focus {
-  box-shadow: none !important;
-  border-color: transparent !important;
 }
 
 /* ------------------ Filter ------------------- */

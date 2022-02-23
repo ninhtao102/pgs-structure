@@ -8,7 +8,7 @@ export interface ITableState {
 }
 
 export interface IFilterTable {
-  type: 'status' | 'payment_type' | 'volume_input_in_input_currency' | 'time_created';
+  type: 'status' | 'time_created' | 'payroll_id';
   value: string | number;
   payload?: string;
 }
@@ -28,8 +28,9 @@ export const setSingleItem = createCustomAction('table/setSingleItem', (data: IT
 export const deleteItem = createCustomAction('table/deleteItem', (id: string) => ({
   id,
 }));
+export const sortData = createCustomAction('table/sortData', () => ({}));
 
-const actions = { setTableData, setTableTempData, filterTableData, setSingleItem, deleteItem };
+const actions = { setTableData, setTableTempData, filterTableData, setSingleItem, deleteItem, sortData };
 
 //Tạo action type(?)
 type Action = ActionType<typeof actions>;
@@ -68,6 +69,12 @@ export default function reducer(state: ITableState = {}, action: Action) {
     case getType(deleteItem): {
       const newData = state.item?.map((item) => {
         return item.payroll_id != action.id;
+      });
+      return { ...state, item: newData, tempItem: newData };
+    }
+    case getType(sortData): {
+      const newData = state.tempItem?.sort((a, b) => {
+        return +new Date(a.time_created) - +new Date(b.time_created);
       });
       return { ...state, item: newData, tempItem: newData };
     }

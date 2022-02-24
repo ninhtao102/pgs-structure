@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -6,10 +6,10 @@ import { Action } from 'typesafe-actions';
 import { mockData } from '../../../configs/mock_data';
 import { ITableItem } from '../../../models/table';
 import { AppState } from '../../../redux/reducer';
-import { setTableData, setTableTempData, sortData } from '../redux/tableRedux';
 import Filter from '../components/Filter';
-import Table from '../components/Table';
 import Footer from '../components/Footer';
+import Table from '../components/Table';
+import { setTableData, setTableTempData, sortData } from '../redux/tableRedux';
 
 const TablePage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
@@ -25,7 +25,8 @@ const TablePage = () => {
   const handleChangePage = useCallback(
     (num: number) => {
       if (dataTable) {
-        if (num === 0 || num++ + Math.ceil(pageInfo.totalItem / pageInfo.itemPerPage) + 1) return;
+        console.log(Math.ceil(pageInfo.totalItem / pageInfo.itemPerPage));
+        if (num === 0 || num === Math.ceil(pageInfo.totalItem / pageInfo.itemPerPage) + 1) return;
         setPageInfo((prev) => {
           return { ...prev, page: num, currItem: num * pageInfo.itemPerPage - pageInfo.itemPerPage };
         });
@@ -73,6 +74,10 @@ const TablePage = () => {
           <FormattedMessage id="payrollTransactionsList" />
         </h3>
         <input className="btn btn-primary " type="button" value="Export CSV" />
+        {/* <CSVLink data={dataTable} headers={}>
+          Download me
+        </CSVLink>
+        <CSVDownload data={dataTable} target="_blank" /> */}
       </div>
       <Filter />
       {dataTable && <Table data={dataTable} sort={sortDatabyDate} />}

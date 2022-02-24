@@ -33,5 +33,7 @@
   "clear": "Clear",
   "username": "Tên người dùng",
   "description": "Mô tả",
-  "updateAvatar": "Cập nhật ảnh đại diện"
+  "updateAvatar": "Cập nhật ảnh đại diện",
+  "requestDelete": "Bạn có xác nhận muốn xóa lựa chọn không?",
+  "confirmDelete": "Xác nhận xóa"
 }

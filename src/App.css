@@ -92,10 +92,11 @@ table > thead > th {
   width: 40px;
   height: 30px;
   font-size: 13px;
-  border: 1px solid #d00000;
+  /* border: 1px solid #d00000; */
   border-radius: 20px;
   background-color: transparent;
   text-align: center;
+  z-index: 5;
 }
 .modal-btn-delete p {
   color: #d00000;
@@ -110,7 +111,7 @@ table > thead > th {
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: 5;
 }
 .modal-detail-content {
   display: flex;
@@ -119,11 +120,11 @@ table > thead > th {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  z-index: 2;
-  width: 80vh;
-  height: 70vh;
+  width: 54vh;
+  height: 72vh;
   background-color: #fff;
   justify-content: center;
+  z-index: 12;
 }
 .modal-delete-content {
   display: flex;
@@ -131,12 +132,13 @@ table > thead > th {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
-  z-index: 2;
+  /* transform: translate(-50%); */
+  transform: translateX(-50%) translateY(-50%);
   height: 30vh;
   width: 70vh;
   background-color: white;
   justify-content: center;
+  z-index: 5;
 }
 .btn-group {
   margin: auto;
@@ -162,5 +164,5 @@ table > thead > th {
 }
 .user__avatar--message:hover {
   display: block;
-  -webkit-transform: scale(1.1);
+  -webkit-transform: scale(1.05);
 }

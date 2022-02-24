@@ -1,6 +1,8 @@
-import React, { memo } from 'react';
 import dayjs from 'dayjs';
+import React, { memo } from 'react';
 import { ITableItem } from '../../../models/table';
+import ModalDelete from './ModalDelete';
+import ModalDetail from './ModalDetail';
 
 interface Props {
   item: ITableItem;
@@ -16,7 +18,10 @@ const TableItem = (props: Props) => {
       <td>{item.currency}</td>
       <td>{(item.volume_input_in_input_currency + item.fees).toFixed(2)}</td>
       <td>{item.payroll_id}</td>
-      <td></td>
+      <td className="d-flex justify-content-around" style={{ padding: 'auto' }}>
+        <ModalDetail item={item} />
+        <ModalDelete item={item} />
+      </td>
     </tr>
   );
 };

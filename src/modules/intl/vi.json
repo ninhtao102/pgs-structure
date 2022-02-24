@@ -30,5 +30,8 @@
   "payrollTable": "Bảng chi trả",
   "payrollTransactionsList": "Payroll Transactions List",
   "apply": "Apply",
-  "clear": "Clear"
+  "clear": "Clear",
+  "username": "Tên người dùng",
+  "description": "Mô tả",
+  "updateAvatar": "Cập nhật ảnh đại diện"
 }

@@ -71,15 +71,9 @@ table > thead > th {
   cursor: pointer;
 }
 
-/* ------------------ Table Page ------------------- */
-
 .header-title {
   color: #2f4159;
 }
-
-/* ------------------ Filter ------------------- */
-
-/* ------------------ Modal ------------------- */
 
 .modal-btn-detail {
   width: 100px;
@@ -146,4 +140,27 @@ table > thead > th {
 }
 .btn-group {
   margin: auto;
+}
+.user__profile {
+}
+.user__avatar {
+  position: relative;
+}
+.user__avatar--detail {
+  cursor: pointer;
+}
+.user__avatar--message {
+  width: 100px;
+  position: absolute;
+  top: 9vh;
+  display: none;
+  cursor: pointer;
+  transition: all 1s ease-out;
+}
+.user__avatar--detail:hover + .user__avatar--message {
+  display: block;
+}
+.user__avatar--message:hover {
+  display: block;
+  -webkit-transform: scale(1.1);
 }

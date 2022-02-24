@@ -66,7 +66,7 @@ const Footer = (props: Props) => {
         <p className="pt-1">from {props.totalPage * props.itemPerPage}</p>
       </div>
       <div className="d-flex">
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" style={{ cursor: 'pointer' }}>
           <ul className="pagination page">
             <li
               className={`${props.currPage === 1 ? 'disabled' : ''} page-item`}

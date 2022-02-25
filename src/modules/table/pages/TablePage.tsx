@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import Filter from '../components/Filter';
 import Footer from '../components/Footer';
 import Table from '../components/Table';
 import { setTableData, setTableTempData, sortData } from '../redux/tableRedux';
+import { CSVLink } from 'react-csv';
 
 const TablePage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
@@ -21,6 +23,35 @@ const TablePage = () => {
     totalItem: mockData.length,
   });
   const data = useSelector((state: AppState) => state.table.tempItem);
+  const dataExport = useSelector((state: AppState) => state.table.tempItem);
+
+  const headers = [
+    { label: 'Status', key: 'status' },
+    { label: 'Date', key: 'date' },
+    { label: 'Funding method', key: 'method' },
+    { label: 'Payroll Currency', key: 'currency' },
+    { label: 'Total', key: 'total' },
+    { label: 'Order', key: 'order' },
+  ];
+
+  const dataCSV = dataExport
+    ? dataExport.map((item) => {
+        return {
+          status: item.status,
+          date: dayjs(item.time_created).format('DD/MM/YYYY'),
+          method: item.payment_type,
+          currency: item.currency,
+          total: +(item.volume_input_in_input_currency + item.fees).toFixed(2),
+          order: item.payroll_id,
+        };
+      })
+    : [];
+
+  const csvLink = {
+    headers: headers,
+    data: dataCSV,
+    filename: `Report${dayjs().format('DDMMYY')}.csv`,
+  };
 
   const handleChangePage = useCallback(
     (num: number) => {
@@ -73,11 +104,9 @@ const TablePage = () => {
         <h3 className="header-title">
           <FormattedMessage id="payrollTransactionsList" />
         </h3>
-        <input className="btn btn-primary " type="button" value="Export CSV" />
-        {/* <CSVLink data={dataTable} headers={}>
-          Download me
+        <CSVLink {...csvLink}>
+          <input className="btn btn-primary " type="butzton" value="Export CSV" />
         </CSVLink>
-        <CSVDownload data={dataTable} target="_blank" /> */}
       </div>
       <Filter />
       {dataTable && <Table data={dataTable} sort={sortDatabyDate} />}

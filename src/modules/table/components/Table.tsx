@@ -1,7 +1,7 @@
 import React from 'react';
+import { AiOutlineCaretDown } from 'react-icons/ai';
 import { ITableItem } from '../../../models/table';
 import TableItem from './TableItem';
-import { AiOutlineCaretDown } from 'react-icons/ai';
 
 interface Props {
   data: ITableItem[];

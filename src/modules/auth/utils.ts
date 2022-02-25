@@ -1,55 +1,52 @@
-import { validEmailRegex } from "../../utils"
-import { ILoginParams, ILoginValidation } from './../../models/auth'
-import { IRegisterParams, IRegisterValidation } from "./../../models/auth"
-
+import { validEmailRegex } from '../../utils';
+import { ILoginParams, ILoginValidation, IRegisterParams, IRegisterValidation } from './../../models/auth';
 
 const validateEmail = (email: string) => {
-    if (!email ) {
-        return 'emailRequire'
-    }
+  if (!email) {
+    return 'emailRequire';
+  }
 
-    if (!validEmailRegex.test(email)) {
-        return 'emailInvalid'
-    }
+  if (!validEmailRegex.test(email)) {
+    return 'emailInvalid';
+  }
 
-    return ''
-}
+  return '';
+};
 
 const validatePassword = (password: string) => {
-    if (!password) {
-        return 'passwordRequire'
-    }
+  if (!password) {
+    return 'passwordRequire';
+  }
 
-    if (password.length < 4) {
-        return 'minPasswordInvalid'
-    }
+  if (password.length < 4) {
+    return 'minPasswordInvalid';
+  }
 
-    return ''
-}
+  return '';
+};
 
 export const validateLogin = (values: ILoginParams): ILoginValidation => {
-    return {
-        email: validateEmail(values.email),
-        password: validatePassword(values.password)
-    }
-}
+  return {
+    email: validateEmail(values.email),
+    password: validatePassword(values.password),
+  };
+};
 
 export const validLogin = (values: ILoginValidation) => {
-    return !values.email && !values.password;
-}
-
+  return !values.email && !values.password;
+};
 
 const validateRepeatPassword = (password: string, repeatPassword: string) => {
-    if (!repeatPassword) {
-        return 'passwordRequire'
-    }
+  if (!repeatPassword) {
+    return 'passwordRequire';
+  }
 
-    if (password !== repeatPassword) {
-        return 'matchPasswordInvalid'
-    }
+  if (password !== repeatPassword) {
+    return 'matchPasswordInvalid';
+  }
 
-    return ''
-}
+  return '';
+};
 
 // const validateField = (field: string, value: string) => {
 //     if (value) return '';
@@ -61,49 +58,57 @@ const validateRepeatPassword = (password: string, repeatPassword: string) => {
 // }
 
 const validateName = (name: string) => {
-    if (!name) {
-        return 'nameRequire'
-    }
+  if (!name) {
+    return 'nameRequire';
+  }
 
-    return ''
-}
+  return '';
+};
 
 const validateGender = (gender: string) => {
-    if (!gender) {
-        return 'genderRequire'
-    }
+  if (!gender) {
+    return 'genderRequire';
+  }
 
-    return ''
-}
+  return '';
+};
 
 const validateRegion = (region: string | number) => {
-    if (!region) {
-        return 'regionRequire'
-    }
+  if (!region) {
+    return 'regionRequire';
+  }
 
-    return 0
-}
+  return 0;
+};
 
 const validateState = (state: string | number) => {
-    if (!state) {
-        return 'stateRequire'
-    }
+  if (!state) {
+    return 'stateRequire';
+  }
 
-    return 0
-}
+  return 0;
+};
 
 export const validateRegister = (values: IRegisterParams): IRegisterValidation => {
-    return {
-        email: validateEmail(values.email),
-        password: validatePassword(values.password),
-        repeatPassword: validateRepeatPassword(values.password, values.repeatPassword),
-        name: validateName(values.name),
-        gender: validateGender(values.gender),
-        region: validateRegion(values.region),
-        state: validateState(values.state)
-    }
-}
+  return {
+    email: validateEmail(values.email),
+    password: validatePassword(values.password),
+    repeatPassword: validateRepeatPassword(values.password, values.repeatPassword),
+    name: validateName(values.name),
+    gender: validateGender(values.gender),
+    region: validateRegion(values.region),
+    state: validateState(values.state),
+  };
+};
 
 export const validRegister = (values: IRegisterValidation) => {
-    return !values.email && !values.password && !values.repeatPassword && !values.name && !values.gender && !values.region && !values.state;
-}
+  return (
+    !values.email &&
+    !values.password &&
+    !values.repeatPassword &&
+    !values.name &&
+    !values.gender &&
+    !values.region &&
+    !values.state
+  );
+};

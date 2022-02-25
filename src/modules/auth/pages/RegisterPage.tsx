@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { replace } from 'connected-react-router';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { API_PATHS } from '../../../configs/api';
+import { ROUTES } from '../../../configs/routes';
 import logo from '../../../logo-420-x-108.png';
 import { IRegisterParams } from '../../../models/auth';
-import RegisterForm from '../components/RegisterForm';
-import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../../../redux/reducer';
-import { Action } from 'redux';
-import { fetchThunk } from '../../common/redux/thunk';
-import { API_PATHS } from '../../../configs/api';
-import { RESPONSE_STATUS_SUCCESS } from '../../../utils/httpResponseCode';
-import { replace } from 'connected-react-router';
-import { ROUTES } from '../../../configs/routes';
 import { getErrorMessageResponse } from '../../../utils';
+import { RESPONSE_STATUS_SUCCESS } from '../../../utils/httpResponseCode';
+import { fetchThunk } from '../../common/redux/thunk';
+import RegisterForm from '../components/RegisterForm';
 
 const RegisterPage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();

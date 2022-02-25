@@ -1,14 +1,14 @@
-import React from 'react';
+import { replace } from 'connected-react-router';
 import Cookies from 'js-cookie';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'typesafe-actions';
+import { ROUTES } from '../../../configs/routes';
 import { AppState } from '../../../redux/reducer';
 import { ACCESS_TOKEN_KEY } from '../../../utils/constants';
 import { resetData } from '../redux/authReducer';
-import { replace } from 'connected-react-router';
-import { ROUTES } from '../../../configs/routes';
 
 interface Prop {
   classBtn: string;

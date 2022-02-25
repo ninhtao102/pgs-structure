@@ -1,4 +1,4 @@
-import { createCustomAction, ActionType, getType } from 'typesafe-actions';
+import { ActionType, createCustomAction, getType } from 'typesafe-actions';
 import { Iitem } from '../../../models/list';
 
 export interface IListState {

@@ -1,9 +1,9 @@
+import Cookies from 'js-cookie';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { AppState } from '../../../redux/reducer';
-import { RESPONSE_STATUS_UNAUTHORIZED } from '../../../utils/httpResponseCode';
 import { ACCESS_TOKEN_KEY } from '../../../utils/constants';
-import Cookies from 'js-cookie';
+import { RESPONSE_STATUS_UNAUTHORIZED } from '../../../utils/httpResponseCode';
 
 export function fetchThunk(
   url: string,

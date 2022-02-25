@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/reducer';
 import { avatarDefault } from '../../../utils/constants';
-import { FormattedMessage } from 'react-intl';
 import LogOut from '../../auth/components/Logout';
 
 const UserInfo = () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -7,8 +7,8 @@ import { API_PATHS } from '../../../configs/api';
 import { AppState } from '../../../redux/reducer';
 import { getErrorMessageResponse } from '../../../utils';
 import { fetchThunk } from '../../common/redux/thunk';
-import { setListItemData } from '../redux/listReducer';
 import ListItem from '../components/ListItem';
+import { setListItemData } from '../redux/listReducer';
 
 const ListItemPage = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();

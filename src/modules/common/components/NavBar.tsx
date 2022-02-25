@@ -1,13 +1,12 @@
-import React from 'react';
 import Cookies from 'js-cookie';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../configs/routes';
+import logo from '../../../logo-420-x-108.png';
 import { AppState } from '../../../redux/reducer';
 import { ACCESS_TOKEN_KEY, avatarDefault } from '../../../utils/constants';
-import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import logo from '../../../logo-420-x-108.png';
-
 import LogOut from '../../auth/components/Logout';
 
 const NavBar = () => {

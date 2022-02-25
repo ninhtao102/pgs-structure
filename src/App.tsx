@@ -1,16 +1,16 @@
-import React from 'react';
-import './App.css';
-import { Routes } from './Routes';
 import Cookies from 'js-cookie';
-import { ACCESS_TOKEN_KEY } from './utils/constants';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppState } from './redux/reducer';
-import { ThunkDispatch } from 'redux-thunk';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Action } from 'redux';
-import { fetchThunk } from './modules/common/redux/thunk';
+import { ThunkDispatch } from 'redux-thunk';
+import './App.css';
 import { API_PATHS } from './configs/api';
-import { RESPONSE_STATUS_SUCCESS } from './utils/httpResponseCode';
 import { setUserInfo } from './modules/auth/redux/authReducer';
+import { fetchThunk } from './modules/common/redux/thunk';
+import { AppState } from './redux/reducer';
+import { Routes } from './Routes';
+import { ACCESS_TOKEN_KEY } from './utils/constants';
+import { RESPONSE_STATUS_SUCCESS } from './utils/httpResponseCode';
 
 function App() {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
